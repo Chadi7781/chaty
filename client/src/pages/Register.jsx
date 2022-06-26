@@ -5,6 +5,7 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import styled from "styled-components";
 import Logo from "../assets/logo-chat.svg";
+import { registerRoute } from "../utils/APIRoutes";
 
 function Register() {
 
@@ -18,7 +19,13 @@ function Register() {
   const handleSubmit = (event) => {
     event.preventDefault();
     if(handleValidation()) {
-     
+      const {password, confirmPassword,username,email}= values;
+
+      const {data} = await axios.post(registerRoute, {
+        username,
+        email,
+        password
+      })
     }
   };
 
