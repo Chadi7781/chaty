@@ -6,7 +6,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import styled from "styled-components";
 import Logo from "../assets/logo-chat.svg";
 import { registerRoute } from "../utils/APIRoutes";
-
+import axios from "axios";
 function Register() {
 
   const [values,setValues] = useState({
@@ -16,9 +16,10 @@ function Register() {
     confirmPassword: "",
   });
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
-    if(handleValidation()) {
+    if(handleValidation) {
+      console.log("in validation",registerRoute);
       const {password, confirmPassword,username,email}= values;
 
       const {data} = await axios.post(registerRoute, {

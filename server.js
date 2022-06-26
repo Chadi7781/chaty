@@ -1,11 +1,15 @@
-const express= require('express');
+//Import user route
+const userRoutes= require('./server/routes/user.routes');
 
+const express= require('express');
 const cors = require('cors');
 
 
 
 
 const app = express();
+
+
 
 
   
@@ -17,6 +21,8 @@ app.use(express.json());
 
 
 require('./server/config/db')
+//Routes 
+app.use('/api/v1/auth/',userRoutes);
 
 
 const server = app.listen(port, () => {
