@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -8,6 +8,9 @@ import Logo from "../assets/logo-chat.svg";
 import { registerRoute } from "../utils/APIRoutes";
 import axios from "axios";
 function Register() {
+
+
+  const navigate = useNavigate()
 
   const [values,setValues] = useState({
     username:"",
@@ -26,8 +29,17 @@ function Register() {
         username,
         email,
         password
-      })
+      });
+
+      if(data.status === false) {
+        toast.error(data.message,toastOptions);
+      }
+      else if (data.status === true) {
+        localStorage.setItem('chat-app-user',JSON.stringify(data.user));
+        navigate("/");
+
     }
+  };  
   };
 
   const toastOptions = {
@@ -135,13 +147,15 @@ const FormContainer = styled.div`
     gap: 1rem;
     justify-content: center;
     img {
-      height: 3rem;
-      width:3rem;
+      height: 2rem;
+      width:2rem;
 
     }
     h1 {
       color:white;
+      margin-top: 5px;
       text-transform: uppercase;
+      
     }
   }
   form {
@@ -154,14 +168,14 @@ const FormContainer = styled.div`
     input {
       background-color: transparent;
       padding: 1rem;
-      border: 0.1rem solid #4e0eff;
+      border: 0.2rem solid #4e0eff;
       color: white;
       border-radius: 0.4rem;
       width: 100%;  
       font-size: 1rem;
 
       &:focus {
-        border:0.1rem solid #997af0;
+        border:0.2rem solid #997af0;
         outline: none;
       }
     }
