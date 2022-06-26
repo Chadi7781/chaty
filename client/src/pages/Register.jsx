@@ -1,19 +1,69 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
+
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import styled from "styled-components";
 import Logo from "../assets/logo-chat.svg";
+
 function Register() {
+
+  const [values,setValues] = useState({
+    username:"",
+    email: "",
+    password: "",
+    confirmPassword: "",
+  });
+
   const handleSubmit = (event) => {
     event.preventDefault();
-    alert("form");
+    if(handleValidation()) {
+     
+    }
   };
 
+  const toastOptions = {
+    position:"bottom-right",
+    autoClose:8000,
+    pauseOnHover:true,
+    draggable:true,
+    theme:"dark"
+  }
+
+
+  const handleValidation = () => {
+    const {password,confirmPassword,username,email}  = values
+     if(email ==="" || username === "" || password === "" || confirmPassword==="") {
+      toast.error("inputs  are required",toastOptions);
+      return false;
+    } 
+    else if(username.length <3) {
+      toast.error("username should be grater than 3 characters",toastOptions);
+      return false;   
+    }
+    else if(password.length <8) {
+      toast.error("password should be equal or grater than 8 characters",toastOptions);
+      return false;
+  }
+    else if(confirmPassword !== password) {
+      console.log("passwords not the same");
+      toast.error("password and confirmPassword should be the same",toastOptions);
+      return false;
+
+    }
+  
+ 
+
+}
   const handleChange = (event) => {
-    console.log(event.target.value);
+    setValues({...values,[event.target.name]:event.target.value});
   };
   return (
+    <>
+
+    <ToastContainer/>
     <FormContainer>
-      <form onSubmit={(event) => handleSubmit(event)}>
+      <form onSubmit={(event) => handleSubmit(event)} noValidate>
         <div className="brand">
           <img src={Logo} alt="" />
           <h1>Snappy</h1>
@@ -21,12 +71,14 @@ function Register() {
         <input
           type="text"
           className="form-control"
+          name="username"
           placeholder="Enter your username"
           onChange={(e) => handleChange(e)}
         />
 
         <input
           type="email"
+          name="email"
           className="form-control"
           placeholder="Enter your email"
           onChange={(e) => handleChange(e)}
@@ -34,12 +86,14 @@ function Register() {
 
         <input
           type="password"
+          name="password"
           className="form-control"
           placeholder="Enter your password"
           onChange={(e) => handleChange(e)}
         />
         <input
           type="password"
+          name="confirmPassword"
           className="form-control"
           placeholder="Confirm your password"
           onChange={(e) => handleChange(e)}
@@ -51,6 +105,9 @@ function Register() {
         </span>
       </form>
     </FormContainer>
+
+    </>
+    
   );
 }
 
