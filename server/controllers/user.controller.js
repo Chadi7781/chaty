@@ -24,6 +24,18 @@ exports.register = async (req,res,next) => {
     return res.json({status:true, user});
 
 
+}
 
 
+
+exports.login = async (req,res,next) => {
+
+    const {username,password} = req.body;
+
+
+    const usern = await User.findOne({username:username});
+    
+    if(!user ) return res.json({message: "Incorrect username or password",status:false});
+
+    
 }
