@@ -7,6 +7,7 @@ import styled from "styled-components";
 import Logo from "../assets/logo-chat.svg";
 import { loginRoute } from "../utils/APIRoutes";
 import axios from "axios";
+import { toastOptions } from "../utils/ToastOptions";
 function Login() {
 
   const navigate = useNavigate()
@@ -46,13 +47,7 @@ function Login() {
   };  
   };
 
-  const toastOptions = {
-    position:"bottom-right",
-    autoClose:8000,
-    pauseOnHover:true,
-    draggable:true,
-    theme:"dark"
-  }
+  
 
 
   const handleValidation = () => {
