@@ -4,6 +4,7 @@ const userRoutes= require('./server/routes/user.routes');
 const express= require('express');
 const cors = require('cors');
 
+const bodyParser = require('body-parser');
 
 
 
@@ -17,7 +18,9 @@ require('dotenv').config();
 const port = process.env.PORT;
 
 app.use(cors());
-app.use(express.json());
+// body parser
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
 
 
 require('./server/config/db')

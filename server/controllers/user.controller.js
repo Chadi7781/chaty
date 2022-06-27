@@ -6,14 +6,16 @@ const bcrypt = require('bcrypt');
 
 exports.register = async (req,res,next) => {
 
+  try {
     const {username,email,password} = req.body;
 
 
     const usernameCheck = await User.findOne({username:username});
     const emailCheck = await User.findOne({email:email});
 
-    if(usernameCheck || emailCheck ) return res.json({msg: "Username or email are already used",status:false});
+    if(usernameCheck || emailCheck ) return res.json({message: "Username or email are already used",status:false});
 
+    
 
     const hashedPassword = await bcrypt.hash(password,10);
 
@@ -23,6 +25,9 @@ exports.register = async (req,res,next) => {
 
     return res.json({status:true, user});
 
+  }catch(ex) {
+    next(ex);
+  }
 
 }
 
@@ -30,12 +35,23 @@ exports.register = async (req,res,next) => {
 
 exports.login = async (req,res,next) => {
 
-    const {username,password} = req.body;
+ try {
+  const {username,password} = req.body;
 
 
-    const usern = await User.findOne({username:username});
-    
-    if(!user ) return res.json({message: "Incorrect username or password",status:false});
+  const user = await User.findOne({username:username});
+  if(!user ) return res.json({message: "Incorrect username or password",status:false});
 
-    
+  const isPasswordValid = await bcrypt.compare(password, user.password);
+
+  if(!isPasswordValid) return res.json({message: "Invalid password",status:false});
+
+  return res.json({status:true,user})
+ }catch(exx) {
+  next(exx)
+ }
+
+
+
+
 }

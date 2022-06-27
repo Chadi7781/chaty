@@ -21,7 +21,7 @@ function Register() {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    if(handleValidation) {
+    if(handleValidation()) {
       console.log("in validation",registerRoute);
       const {password, confirmPassword,username,email}= values;
 
@@ -31,11 +31,13 @@ function Register() {
         password
       });
 
+
       if(data.status === false) {
         toast.error(data.message,toastOptions);
       }
-      else if (data.status === true) {
+       if (data.status === true) {
         localStorage.setItem('chat-app-user',JSON.stringify(data.user));
+        
         navigate("/");
 
     }
@@ -72,6 +74,7 @@ function Register() {
 
     }
   
+    return true;
  
 
 }
@@ -81,7 +84,6 @@ function Register() {
   return (
     <>
 
-    <ToastContainer/>
     <FormContainer>
       <form onSubmit={(event) => handleSubmit(event)} noValidate>
         <div className="brand">

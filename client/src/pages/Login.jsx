@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 
 import { ToastContainer, toast } from 'react-toastify';
@@ -9,8 +9,15 @@ import { loginRoute } from "../utils/APIRoutes";
 import axios from "axios";
 function Login() {
 
-
   const navigate = useNavigate()
+
+
+
+  useEffect(()=> {
+    if(localStorage.getItem("chat-app-user")) {
+      navigate("/");
+    }
+  },[])
 
   const [values,setValues] = useState({
     username:"",
@@ -19,7 +26,7 @@ function Login() {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    if(handleValidation) {
+    if(handleValidation()) {
       console.log("in validation",loginRoute);
       const {password, username}= values;
 
@@ -31,7 +38,7 @@ function Login() {
       if(data.status === false) {
         toast.error(data.message,toastOptions);
       }
-      else if (data.status === true) {
+       if (data.status === true) {
         localStorage.getItem('chat-app-user');
         navigate("/");
 
@@ -55,6 +62,8 @@ function Login() {
       return false;
   
     }
+
+    return true ;
   
  
 
@@ -65,7 +74,6 @@ function Login() {
   return (
     <>
 
-    <ToastContainer/>
     <FormContainer>
       <form onSubmit={(event) => handleSubmit(event)} noValidate>
         <div className="brand">
