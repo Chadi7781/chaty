@@ -5,21 +5,29 @@ import styled from "styled-components";
 import { Buffer } from "buffer";
 
 import loader from "../assets/loader.gif";
+import { toast } from "react-toastify";
+import { toastOptions } from "../utils/ToastOptions";
 export default function SetAvatar() {
+
   const api = "https://api.multiavatar.com/456789945";
   const navigate = useNavigate();
   const [avatars, setAvatars] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [selectedAvatar, setSelectedAvatar] = useState(undefined);
 
-  const setProfilePicture = async () => {};
+  const setProfilePicture = async () => {
+    if(selectedAvatar === undefined) {  
+      toast.error("Please select an avatar",toastOptions);
+
+    }
+  };
 
   useEffect(() => {
     async function fetchData() {
       const data = [];
       for (let i = 0; i < 4; i++) {
         const image = await axios.get(
-          `${api}/${Math.round(Math.random() * 1000)}`
+          `${api}/${Math.round(Math.random() * 1000)}?apikey=CLIRokgflsMWeU`
         );
 
         const buffer = new Buffer(image.data);
@@ -33,27 +41,39 @@ export default function SetAvatar() {
   }, []);
 
   return (
-    <Container>
-      <div className="title-container">
-        <h1>Pick an avatar as your profile picture</h1>
-      </div>
-      <div className="avatars">
-        {avatars.map((avatar, index) => {
-          return (
-            <div
-              key={index}
-              className={`avatar ${selectedAvatar === index ? "selected" : ""}`}
-            >
-              <img
-                src={`data:image/svg+xml;base64,${avatar}`}
-                alt="avatar"
-                onClick={() => setSelectedAvatar(index)}
-              />
+    <>
+     {
+      isLoading ?
+      <Container>
+        <img src={loader} alt="loader" className="loader" />
+      </Container> : (
+            <Container>
+            <div className="title-container">
+              <h1>Pick an avatar as your profile picture</h1>
             </div>
-          );
-        })}
-      </div>
-    </Container>
+            <div className="avatars">
+              {avatars.map((avatar, index) => {
+                return (
+                  <div
+                    key={index}
+                    className={`avatar ${selectedAvatar === index ? "selected" : ""}`}
+                  >
+                    <img
+                      src={`data:image/svg+xml;base64,${avatar}`}
+                      alt="avatar"
+                      onClick={() => setSelectedAvatar(index)}
+                    />
+                  </div>
+                );
+              })}
+            </div>
+            <button className="submit-btn" onClick={() =>setProfilePicture() }>Set your profile picture</button>
+          </Container>
+      )
+     }
+    
+    </>
+
   );
 }
 
@@ -80,11 +100,41 @@ width: 100vw;
 
     .avatar {
         border: 0.4rem solid transparent;
+        border-radius: 5rem;
+        padding: 0.4rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: 0.5s ease-in-out;
+
+        
         img {
             height: 6rem;
+            cursor: pointer;
+          
         }
+
+    }
+    .selected {
+      background-color: #4e0eff;
     }
 
+}
+
+.submit-btn {
+  background-color: #997af0;
+      color:white;
+      padding:1rem 2rem;
+      border:none;
+      cursor: pointer;
+      font-size: 1rem;
+      text-transform: uppercase;
+      font-weight: bold;
+      border-radius: 0.4rem;
+      transition: 0.2s ease-in-out;
+      &:hover {
+      background-color:#4e0eff;
+}
 }
 
 
