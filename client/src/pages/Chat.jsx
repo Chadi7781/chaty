@@ -1,5 +1,5 @@
 import axios from 'axios';
-import React,{useState,useEffect} from 'react'
+import React,{useState,useEffect, useCallback} from 'react'
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import Contact from '../components/Contact';
@@ -28,24 +28,26 @@ function Chat() {
     navigateCurrentUser();
   },[]);
 
-  useEffect(()=> {
-    async function fetchData() {
-      if(currentUser) {
-        if(currentUser.isAvatarImageSet) {
-          const data = await axios.get(`${allUsersRoute}/${currentUser._id}}`);
+  const  fetchData= useCallback(async() =>{
+    if(currentUser) {
+      if(currentUser.isAvatarImageSet) {
+        const data = await axios.get(`${allUsersRoute}/${currentUser._id}}`);
 
-          setContacts(data.data);
-        }
-        else {
-          navigate("/setAvatar");
-        }
+        setContacts(data.data);
       }
-
-
+      else {
+         navigate("/setAvatar");
+      }
     }
+  },[])
 
-    fetchData();
-  },[currentUser])
+  useEffect(()=> {
+    
+      fetchData();
+
+    
+
+  },[fetchData.currentUser])
 
   return (
     <>
