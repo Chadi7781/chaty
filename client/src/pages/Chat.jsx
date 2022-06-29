@@ -15,7 +15,7 @@ function Chat() {
 
   useEffect(() => { 
 
-    async function  navigate() {
+    async function  navigateCurrentUser() {
       if(!localStorage.getItem('chat-app-user')) {
         navigate("/login")
       }
@@ -24,6 +24,7 @@ function Chat() {
       }
     }
 
+    navigateCurrentUser();
   },[]);
 
   useEffect(()=> {
@@ -41,6 +42,8 @@ function Chat() {
 
 
     }
+
+    fetchData();
   },[currentUser])
 
   return (
