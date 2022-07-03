@@ -75,7 +75,9 @@ const Container = styled.div`
   display: grid;
   grid-template-rows: 10% 75% 15%;
   overflow: hidden;
-  background-color: #080420;
+  background-color: white;
+  border-top-left-radius: 2rem;
+  border-bottom-left-radius: 2rem;
 
   .brand {
     display: flex;
@@ -86,7 +88,7 @@ const Container = styled.div`
       height: 2rem;
     }
     h3 {
-      color: white;
+      color: black;
       text-transform: uppercase;
     }
   }
@@ -126,22 +128,24 @@ const Container = styled.div`
 
       .username {
         h3 {
-          color: white;
+          color: #8d8c8a;
         }
       }
     }
 
     .selected {
-      background-color: #9a86f3;
+      background-color: #ededed;
     }
   }
 
   .current-user {
-    background-color: #0d0d30;
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 2rem;
+    gap: 0.5rem;
+
+    padding: 10px;
+    flex-direction: column;
 
     .avatar {
       img {
@@ -151,7 +155,8 @@ const Container = styled.div`
     }
     .username {
       h2 {
-        color: white;
+        color: #4e00ff;
+        text-align: center;
       }
     }
   }

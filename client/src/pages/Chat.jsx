@@ -64,18 +64,21 @@ function Chat() {
 const Container = styled.div`
   height: 100vh;
   width: 100vw;
-  background-color: #131324;
+  background-color: #00000023;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   gap: 1rem;
-
+  -moz-box-shadow: 0 5px 5px rgba(182, 182, 182, 0.75);
+  -webkit-box-shadow: 0 5px 5px rgba(182, 182, 182, 0.75);
+  box-shadow: 0 5px 5px rgba(182, 182, 182, 0.75);
   .container {
     height: 85vh;
     width: 85vw;
-    background-color: #00000076;
+    background-color: white;
     display: grid;
+    border-radius: 2rem;
 
     grid-template-columns: 25% 75%;
   }

@@ -8,7 +8,7 @@ export default function Welcome({ currentUser }) {
       <Container>
         <img src={Robot} alt="robot" />
         <h1>
-          Welcome, <span>{currentUser.username}</span>
+          Welcome, <span>xxx</span>
         </h1>
         <h3>Please select a chat to Start Messaging</h3>
       </Container>
@@ -21,12 +21,13 @@ const Container = styled.div`
   align-items: center;
   justify-content: center;
   flex-direction: column;
-  color: white;
+  color: black;
 
   img {
     height: 20rem;
   }
   span {
     color: #4e00ff;
+    font-weight: 800;
   }
 `;
