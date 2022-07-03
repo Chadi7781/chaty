@@ -3,6 +3,7 @@ import React, { useState, useEffect, useCallback } from "react";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import Contact from "../components/Contact";
+import Welcome from "../components/Welcome";
 import { allUsersRoute } from "../utils/APIRoutes";
 
 function Chat() {
@@ -11,6 +12,7 @@ function Chat() {
   const [contacts, setContacts] = useState([]);
 
   const [currentUser, setCurrentUser] = useState(undefined);
+  const [currentChat, setCurrentChat] = useState(undefined);
 
   useEffect(() => {
     async function navigateCurrentUser() {
@@ -39,11 +41,20 @@ function Chat() {
     fetchData();
   }, [currentUser]);
 
+  const handleChatChange = (chat) => {
+    setCurrentChat(chat);
+  };
+
   return (
     <>
       <Container>
         <div className="container">
-          <Contact contacts={contacts} currentUser={currentUser} />
+          <Contact
+            contacts={contacts}
+            currentUser={currentUser}
+            chatChange={handleChatChange}
+          />
+          <Welcome currentUser={currentUser} />
         </div>
       </Container>
     </>
@@ -66,7 +77,7 @@ const Container = styled.div`
     background-color: #00000076;
     display: grid;
 
-    grid-template-columns: 25%;
+    grid-template-columns: 25% 75%;
   }
 `;
 
