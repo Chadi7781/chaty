@@ -26,8 +26,10 @@ export default function Contact({ contacts, currentUser, chatChange }) {
       {currentUserImage && currentUserName && (
         <Container>
           <div className="brand">
-            <img src={Logo} alt="" />
-            <h3>Snappy</h3>
+            {/* <img src={Logo} alt="" /> */}
+            <h3>
+              SNA<strong style={{ color: "white" }}>PPY</strong>
+            </h3>
           </div>
 
           <div className="contacts">
@@ -75,7 +77,7 @@ const Container = styled.div`
   display: grid;
   grid-template-rows: 10% 75% 15%;
   overflow: hidden;
-  background-color: white;
+  background-color: #52ab98;
   border-top-left-radius: 2rem;
   border-bottom-left-radius: 2rem;
 
@@ -90,6 +92,8 @@ const Container = styled.div`
     h3 {
       color: black;
       text-transform: uppercase;
+      font-size: 2rem;
+      font-weight: 900;
     }
   }
 
@@ -142,9 +146,10 @@ const Container = styled.div`
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 0.5rem;
+    gap: 0.2rem;
+    background-color: #ffffff39;
 
-    padding: 10px;
+    padding: 1rem;
     flex-direction: column;
 
     .avatar {
@@ -155,7 +160,7 @@ const Container = styled.div`
     }
     .username {
       h2 {
-        color: #4e00ff;
+        color: white;
         text-align: center;
       }
     }
