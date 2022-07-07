@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import Logout from "./Logout";
 export default function ChatContainer({ currentUser }) {
   return (
     <>
@@ -16,7 +17,11 @@ export default function ChatContainer({ currentUser }) {
               <h3>{currentUser.username}</h3>
             </div>
           </div>
+          <Logout />
         </div>
+
+        <div className="chat-messages"></div>
+        <div className="chat-input"></div>
       </Container>
     </>
   );
@@ -29,7 +34,7 @@ const Container = styled.div`
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 0.2rem;
+    padding: 0 2rem;
 
     .user-details {
       display: flex;
