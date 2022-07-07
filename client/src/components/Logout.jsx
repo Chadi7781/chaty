@@ -14,7 +14,7 @@ export default function Logout() {
 
   return (
     <>
-      <Button>
+      <Button onClick={handleClick}>
         <BiPowerOff />
       </Button>
     </>
