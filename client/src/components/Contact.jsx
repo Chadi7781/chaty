@@ -145,7 +145,8 @@ const Container = styled.div`
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 0.2rem;
+    gap: 0.1rem;
+
     background-color: #ffffff39;
 
     padding: 1rem;
@@ -154,6 +155,7 @@ const Container = styled.div`
     .avatar {
       img {
         height: 4rem;
+        padding: 0.2rem;
         max-inline-size: 100%;
       }
     }
@@ -161,6 +163,7 @@ const Container = styled.div`
       h2 {
         color: white;
         text-align: center;
+        font-size: 1.2rem;
       }
     }
   }
