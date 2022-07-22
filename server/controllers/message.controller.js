@@ -21,3 +21,17 @@ exports.addMessageController = async (req, res, next) => {
     next(err);
   }
 };
+
+
+exports.getAllMessagesController = async(req, res, next) => {
+
+  try {
+
+    const {from,to} = req.body;
+    const messages = await Message.find({})
+
+  }catch(ex) {
+    next(ex);
+  }
+ }
+

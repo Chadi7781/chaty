@@ -5,8 +5,8 @@ export const loginRoute = `${host}/api/v1/auth/login`;
 export const setAvatarRoute = `${host}/api/v1/auth/setAvatar`;
 export const allUsersRoute = `${host}/api/v1/auth/allusers`;
 
-const  sendMessageRoute = `${host}/api/v1/message/addMessage`;
+export const  sendMessageRoute = `${host}/api/v1/message/addMessage`;
 
 
-const  getAllMessagesRoute = `${host}/api/v1/message/getAllMessages`;
+export const  getAllMessagesRoute = `${host}/api/v1/message/getAllMessages`;
 

@@ -1,6 +1,6 @@
 //Import user route
 const userRoutes= require('./server/routes/user.routes');
-const messageRoutes= require('./server/routes/');
+const messageRoutes= require('./server/routes/message.routes');
 
 const express= require('express');
 const cors = require('cors');

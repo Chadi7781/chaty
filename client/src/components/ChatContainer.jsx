@@ -3,7 +3,7 @@ import styled from "styled-components";
 import ChatInput from "./ChatInput";
 import Logout from "./Logout";
 import Messages from "./Messages";
-
+import {sendMessageRoute} from "../utils/APIRoutes";
 import axios from 'axios';
 export default function ChatContainer({ currentUser,currentChat }) {
   const handleSendMessage = async (message) => {
@@ -34,7 +34,7 @@ export default function ChatContainer({ currentUser,currentChat }) {
           </div>
           <Logout />
         </div>
-        
+        <div className="chat-messages"></div>
         <ChatInput handleSendMessage={handleSendMessage}></ChatInput>
 
         <div className="chat-input"></div>

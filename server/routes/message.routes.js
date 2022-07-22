@@ -1,5 +1,6 @@
-const  {addMessageController,getAllMessagesController} from "../../../../../../../../../../services= require('../controllers/message.controller');
+const  {addMessageController,getAllMessagesController} 
 
+= require("../controllers/message.controller.js")
 
 const express = require('express');
 
