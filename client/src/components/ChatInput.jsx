@@ -22,7 +22,7 @@ export default function ChatInput({ handleSendMessage }) {
     e.preventDefault();
     if (message.length > 0) {
       handleSendMessage(message);
-      setMessage("");
+      setMessage("");  
     }
   };
   return (

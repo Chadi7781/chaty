@@ -1,5 +1,6 @@
 //Import user route
 const userRoutes= require('./server/routes/user.routes');
+const messageRoutes= require('./server/routes/');
 
 const express= require('express');
 const cors = require('cors');
@@ -26,6 +27,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 require('./server/config/db')
 //Routes 
 app.use('/api/v1/auth/',userRoutes);
+app.use('/api/v1/message',messageRoutes)
 
 
 const server = app.listen(port, () => {
